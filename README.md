@@ -31,6 +31,8 @@ We are planning to develop this project using Vue JS as a frontend framework, Ad
 - Here are the document how to deploy vuejs application to heroku **[click here](https://dev.to/anjolaogunmefun/deploy-vue-js-projects-to-heroku-1hb5)**
 
  
+### Our Application is developed based upon the planned our [Project Board](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/projects/2)
+### Weekly our work is updated in [wiki](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/wiki)
 
 
 
