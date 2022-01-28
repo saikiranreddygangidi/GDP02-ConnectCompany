@@ -1,4 +1,4 @@
-# RFP - Connect Company
+# Connect Company
 
 ## Statement of Purpose :
 
