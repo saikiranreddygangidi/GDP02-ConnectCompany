@@ -70,3 +70,19 @@
     </b-row>
   </b-container>
 </template>
+<script>
+export default {
+  name: "Register",
+  data() {
+    return {
+      input: {
+        email: "",
+        username: "",
+        code: "",
+      },
+      wizard: {},
+    };
+  },
+ 
+};
+</script>
