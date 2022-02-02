@@ -56,3 +56,92 @@
     </b-row>
   </b-container>
 </template>
+<script>
+import CryptoJS from "crypto-js";
+
+export default {
+  name: "Login",
+  data() {
+    return {
+      input: {
+        username: "",
+        code: "",
+      },
+      wizard: {},
+    };
+  },
+  methods: {
+    login() {
+      console.log("in login *****");
+      console.log("data is ", this.input);
+
+      const iv = "sinasinasisinaaa";
+      //console.log("store Intern", this.$store);
+      const cipher = CryptoJS.AES.encrypt(
+        this.input.code,
+        CryptoJS.enc.Utf8.parse("82f2ceed4c503896c8a291e560bd4325"),
+        {
+          iv: CryptoJS.enc.Utf8.parse(iv),
+          mode: CryptoJS.mode.CBC,
+        }
+      );
+
+      this.input.code = cipher.toString();
+      this.$store
+        .dispatch("retrieveToken", this.input)
+        .then((response) => {
+          console.log(response);
+          // let role = response.data.role;
+          // if (role == "user") {
+          //   this.loading = false;
+          this.$router.push({ name: "home" });
+          // } else {
+          //   this.loading = false;
+          //   this.$router.push({ name: "Dashboard" });
+          // }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.input.username = "";
+          this.input.code = "";
+          this.wizard.login = " Invalid Credentials. Enter correct details";
+        });
+      // this.$axios
+      //   .post("/login", this.input)
+      //   .then((response) => {
+      //     console.log(response);
+      //     this.$router.push({ name: "home" });
+      //   })
+      //   .catch((err) => {
+      //     console.log("error message is ", err);
+      //     this.input.username = "";
+      //     this.input.code = "";
+      //     this.wizard.login = " Invalid Credentials. Enter correct details";
+      //   });
+    },
+  },
+};
+</script>
+
+<style scoped>
+#login {
+  width: 500px;
+  border: 1px solid #cccccc;
+
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+}
+.login {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.m-t-4 {
+  margin-top: 4px;
+}
+span {
+  color: red;
+}
+</style>
