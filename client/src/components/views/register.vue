@@ -104,3 +104,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.register {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+</style>
