@@ -83,6 +83,24 @@ export default {
       wizard: {},
     };
   },
- 
+  methods: {
+    register() {
+      console.log(this.input);
+      this.$axios
+        .post("/register", this.input)
+        .then((response) => {
+          console.log(response);
+          this.input.email = "";
+          this.input.username = "";
+          this.input.code = "";
+          this.wizard.register =
+            " successfully uploaded data. you can login now !";
+        })
+        .catch((err) => {
+          console.log(err);
+          this.wizard.register = " error in uploading data";
+        });
+    },
+  },
 };
 </script>
