@@ -57,7 +57,32 @@ class AuthController {
             },
           });
         }
-        
+        if (!userinfo.username || !userinfo.code) {
+          console.error(
+            "AuthController-login, missing required attributes: email/password"
+          );
+          return response.status(400).json({
+            error: {
+              status: 400,
+              message: "bad request, username and code are required",
+            },
+          });
+        }
+    
+        const Securitykey = "82f2ceed4c503896c8a291e560bd4325";
+        const initVector = "sinasinasisinaaa";
+        const algorithm = "aes-256-cbc";
+    
+        const decipher = crypto.createDecipheriv(
+          algorithm,
+          Securitykey,
+          initVector
+        );
+    
+        let decryptedData = decipher.update(userinfo.code, "base64", "utf-8");
+    
+        decryptedData += decipher.final("utf8");
+    
         userinfo.code = decryptedData;
         console.log("userinfo ", userinfo);
         const user = await User.query()
