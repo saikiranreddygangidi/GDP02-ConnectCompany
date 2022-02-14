@@ -16,6 +16,12 @@ class UserController {
 
     return events[0];
   }
+  async addSubscribe({ request, response, auth, params }) {
+    let subdetails = request.post();
+    let subid = await Database.table("subscriptions").insert(subdetails);
+
+    return response.json({ message: "succefully uploaded with id " + subid });
+  }
 }
 
 module.exports = UserController;
