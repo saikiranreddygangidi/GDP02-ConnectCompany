@@ -69,3 +69,47 @@
     <br />
   </div>
 </template>
+<script>
+//import api from '@/api'
+export default {
+  name: "addCompany",
+  data() {
+    return {
+      loading: false,
+      companies: {},
+    };
+  },
+  async created() {},
+  async mounted() {},
+  methods: {
+    savePost() {
+      console.log(this.$store.getters.userDetails.id, "djfhgdwfhghjn");
+      
+      this.companies.userId = this.$store.getters.userDetails.id;
+      this.$axios
+        .post("/addCompany", this.companies)
+        .then((response) => {
+          this.spin = false;
+          this.$root.$bvToast.toast(`Company added successfully`, {
+            title: `Company Created `,
+            variant: "success",
+            autoHideDelay: 50000,
+          });
+
+          console.log("----", response.data);
+        })
+        .catch((error) => {
+          this.spin = false;
+          console.log("----", error.response.data);
+        });
+        this.companies={}
+    },
+
+    logout() {
+      this.$store.dispatch("destroyToken").then(() => {
+        this.$router.push({ name: "login" });
+      });
+    },
+  },
+};
+</script>
