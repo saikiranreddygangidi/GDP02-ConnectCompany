@@ -1,5 +1,7 @@
 # connectCompany_Gdp_04
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/417f17d742c94153b0cd4d20cef3c346)](https://app.codacy.com/gh/saikiranreddygangidi/GDP02-ConnectCompany?utm_source=github.com&utm_medium=referral&utm_content=saikiranreddygangidi/GDP02-ConnectCompany&utm_campaign=Badge_Grade_Settings)
+
 **Detailed Proposal Link :** [click Here]()
 
 
