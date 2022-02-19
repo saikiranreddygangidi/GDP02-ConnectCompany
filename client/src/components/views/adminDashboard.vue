@@ -11,9 +11,8 @@
             </b-button>
           </router-link>
         </div>
-        
-        <div class="float-right" style="margin-left:80%">
-        
+
+        <div class="float-right" style="margin-left: 80%">
           <router-link to="/addCompany">
             <b-button pill variant="info" class="float-right">
               Create Company
@@ -87,9 +86,7 @@
         </b-collapse>
       </b-card>
       <b-modal id="addModal" hide-footer centered>
-        <template #modal-title>
-          Company details
-        </template>
+        <template #modal-title> Company details </template>
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >

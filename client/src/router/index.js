@@ -10,18 +10,18 @@ const routes = [
     path: "/",
     redirect: {
       name: "welcome",
-    },},
-    {
-        path: "/welcome",
-        name: "welcome",
-        component: WelcomeComponent,
-      },
-      {
-        path: "/adminDashboard",
-        name: "AdminDashboard",
-        component: AdminDashboard,
-      },
-
+    },
+  },
+  {
+    path: "/welcome",
+    name: "welcome",
+    component: WelcomeComponent,
+  },
+  {
+    path: "/adminDashboard",
+    name: "AdminDashboard",
+    component: AdminDashboard,
+  },
 ];
 
 const router = new VueRouter({

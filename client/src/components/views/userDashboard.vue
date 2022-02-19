@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-4">
-    <h1 class="h1" style="background:white">User Dashboard</h1>
+    <h1 class="h1" style="background: white">User Dashboard</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
       <b-col>
