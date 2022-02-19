@@ -20,4 +20,4 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
-          prettier_options: --write */.{js,vue}
+          prettier_options: --write **/*.{js,vue}
