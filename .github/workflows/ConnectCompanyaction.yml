@@ -1,5 +1,5 @@
 
-name: Connect Company action
+name: ConnectCompany
 
 on:
   pull_request:
