@@ -85,3 +85,24 @@
     </b-row>
   </div>
 </template>
+<script>
+//import api from '@/api'
+export default {
+  name: "updatePassword",
+  data() {
+    return {
+      loading: false,
+      user: {},
+      message:"",
+      testpassword:""
+    };
+  },
+  async created() {},
+  async mounted() {},
+  methods: {
+   
+
+   
+  },
+};
+</script>
