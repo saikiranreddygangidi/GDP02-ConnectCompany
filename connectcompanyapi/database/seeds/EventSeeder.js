@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -11,11 +11,10 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+const Factory = use("Factory");
 
 class EventSeeder {
-  async run () {
-  }
+  async run() {}
 }
 
-module.exports = EventSeeder
+module.exports = EventSeeder;
