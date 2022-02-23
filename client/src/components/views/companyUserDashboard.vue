@@ -100,6 +100,24 @@ export default {
   async created() {},
   async mounted() {},
   methods: {
+     async savePost() {
+      let userId = this.$route.params.userId;
+      this.user.userId = userId;
+      console.log(this.user);
+      console.log(this.user.password,this.testpassword);
+
+      if(this.user.password == this.testpassword){
+await this.$axios.post("/updatePassword", this.user);
+this.message="updated successfully";
+this.$router.push({ name: "login" });
+      }else{
+          this.message="password should match"
+      }
+
+      
+
+      console.log(this.user);
+    },
    
 
    
