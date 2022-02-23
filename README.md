@@ -1,3 +1,9 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0b7ca14241c542329e8270e4442ced0a)](https://www.codacy.com/gh/saikiranreddygangidi/GDP02-ConnectCompany/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=saikiranreddygangidi/GDP02-ConnectCompany&amp;utm_campaign=Badge_Grade)
+[![Known Vulnerabilities](https://snyk.io/test/github/{saikiranreddygangidi}/{GDP02-ConnectCompany}/badge.svg)](https://snyk.io/test/github/{saikiranreddygangidi}/{GDP02-ConnectCompany})
+
+
+
+
 # connectCompany_Gdp_04
 
 **Detailed Proposal Link :** [click Here]()

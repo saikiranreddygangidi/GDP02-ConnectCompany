@@ -7,16 +7,14 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
-        
-      
+
         <b-navbar-nav v-if="isloggied()" class="nav-but">
-          <b-nav-text 
+          <b-nav-text
             ><router-link to="/login" class="border"
               ><button>Logout</button></router-link
             ></b-nav-text
           >
         </b-navbar-nav>
-        
       </b-collapse>
     </b-navbar>
   </div>

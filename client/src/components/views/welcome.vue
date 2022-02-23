@@ -15,7 +15,7 @@
               Using the Connect Company there are multiple side advantages for
               both the Users and Companie
             </p>
-            <div style="display:flex;">
+            <div style="display: flex">
               <router-link to="/register">
                 <button class="button">Register</button> </router-link
               ><router-link to="/login">

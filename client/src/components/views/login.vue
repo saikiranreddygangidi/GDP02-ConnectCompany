@@ -1,6 +1,5 @@
 <template>
   <b-container fluid class="container">
-  
     <b-row>
       <div class="col-sm-12">
         <h2 class="mt-5 mb-5 text-light">Welcome to ConnectCompany</h2>
