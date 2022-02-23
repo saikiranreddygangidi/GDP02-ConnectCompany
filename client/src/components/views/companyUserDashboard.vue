@@ -93,8 +93,8 @@ export default {
     return {
       loading: false,
       user: {},
-      message:"",
-      testpassword:""
+      message: "",
+      testpassword: "",
     };
   },
   async created() {},
