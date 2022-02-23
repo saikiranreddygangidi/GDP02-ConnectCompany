@@ -1,6 +1,5 @@
-'use strict'
+"use strict";
 
-class CompanUserController {
-}
+class CompanUserController {}
 
-module.exports = CompanUserController
+module.exports = CompanUserController;
