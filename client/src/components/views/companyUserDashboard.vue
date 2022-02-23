@@ -93,14 +93,14 @@ export default {
     return {
       loading: false,
       user: {},
-      message: "",
-      testpassword: "",
+      message:"",
+      testpassword:""
     };
   },
   async created() {},
   async mounted() {},
   methods: {
-     async savePost() {
+    async savePost() {
       let userId = this.$route.params.userId;
       this.user.userId = userId;
       console.log(this.user);
@@ -118,9 +118,12 @@ this.$router.push({ name: "login" });
 
       console.log(this.user);
     },
-   
 
-   
+    logout() {
+      this.$store.dispatch("destroyToken").then(() => {
+        this.$router.push({ name: "login" });
+      });
+    },
   },
 };
 </script>
