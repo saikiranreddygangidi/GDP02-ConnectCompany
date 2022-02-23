@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -11,32 +11,30 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+const Factory = use("Factory");
 const Database = use("Database");
 class EventSeeder {
-  async run () {
+  async run() {
     let events = [
       {
-      
         eventName: "mobile launch",
         eventType: "external",
         eventLocation: "Maryville",
         belongsTo: 1,
         createdBy: 1,
-        eventDate: "2021-07-19"
+        eventDate: "2021-07-19",
       },
       {
-      
         eventName: "mobile launch",
         eventType: "external",
         eventLocation: "Maryville",
         belongsTo: 1,
         createdBy: 1,
-        eventDate: "2021-07-19"
+        eventDate: "2021-07-19",
       },
     ];
     await Database.insert(events).into("events");
   }
 }
 
-module.exports = EventSeeder
+module.exports = EventSeeder;
