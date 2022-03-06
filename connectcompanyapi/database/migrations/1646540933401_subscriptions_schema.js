@@ -6,8 +6,12 @@ const Schema = use('Schema')
 class SubscriptionsSchema extends Schema {
   up () {
     this.create('subscriptions', (table) => {
-      table.increments()
-      table.timestamps()
+      table.increments().primary().index('id');
+      table.integer("userId").unsigned().notNullable();
+      table.foreign("userId").references("users.id").onDelete('cascade');
+      table.integer("eventId").unsigned().notNullable();
+      table.foreign("eventId").references("events.id").onDelete('cascade');
+      table.timestamps();
     })
   }
 
@@ -15,5 +19,3 @@ class SubscriptionsSchema extends Schema {
     this.drop('subscriptions')
   }
 }
-
-module.exports = SubscriptionsSchema
