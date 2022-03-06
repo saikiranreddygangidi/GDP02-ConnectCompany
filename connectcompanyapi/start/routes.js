@@ -25,7 +25,8 @@ Route.group(() => {
   Route.get("/getAllCompanies", "AdminController.getAllCompanies");
   Route.get("/getAllEvents", "CompanyUserController.getAllEvents");
   //for comapanies
-  Route.get("/getAllEventsByUID/:uid", "CompanyUserController.getAllEventsByUID");
-
-
+  Route.get(
+    "/getAllEventsByUID/:uid",
+    "CompanyUserController.getAllEventsByUID"
+  );
 }).prefix("/connectcompany/api/v1");
