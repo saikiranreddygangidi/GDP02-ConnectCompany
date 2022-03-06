@@ -16,4 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.on("/").render("welcome");
+Route.get("/", () => {
+  return { greeting: "hello world, backend is setted up" };
+});
+Route.group(() => {
+  Route.post("/register", "AuthController.register");
+  Route.post("/login", "AuthController.login");
+  Route.get("/getAllCompanies", "AdminController.getAllCompanies");
+  Route.get("/getAllEvents", "CompanyUserController.getAllEvents");
+  //for comapanies
+  Route.get("/getAllEventsByUID/:uid", "CompanyUserController.getAllEventsByUID");
+
+
+}).prefix("/connectcompany/api/v1");
