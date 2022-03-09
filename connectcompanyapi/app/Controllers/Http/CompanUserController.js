@@ -24,6 +24,14 @@ class CompanyUserController {
 
     return company;
   }
+  async getCompanyDetailsByUID({ params, request, response, auth }) {
+    let uid = params.uid;
+    let company = await Database.table("companies")
+      .select("*")
+      .where("companies.userId", uid);
+
+    return company;
+  }
   async addCompany({ request, response, auth }) {
     try {
       let company = request.post();
