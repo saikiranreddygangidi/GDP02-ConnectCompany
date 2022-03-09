@@ -53,7 +53,6 @@ class CompanyUserController {
         companymemberid;
       console.log(cid);
       console.log("here is the email", useremail);
-     
 
       return response.json({
         message: "succefully uploaded with id " + companyid,
@@ -65,7 +64,6 @@ class CompanyUserController {
       });
     }
   }
-  
 }
 
 module.exports = CompanyUserController;
