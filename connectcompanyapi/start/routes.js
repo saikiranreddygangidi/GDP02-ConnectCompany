@@ -25,8 +25,18 @@ Route.group(() => {
   Route.get("/getAllCompanies", "AdminController.getAllCompanies");
   Route.get("/getAllEvents", "CompanyUserController.getAllEvents");
   //for comapanies
-  Route.get(
-    "/getAllEventsByUID/:uid",
-    "CompanyUserController.getAllEventsByUID"
-  );
+  Route.get("/getAllEventsByUID/:uid", "CompanyUserController.getAllEventsByUID");
+
+
+  Route.get("/getCompanyDetails/:eventId", "CompanyUserController.getCompanyDetails");
+  Route.get("/getCompanyDetailsByUID/:uid", "CompanyUserController.getCompanyDetailsByUID");
+
+  Route.post("addCompany","CompanyUserController.addCompany");
+  Route.post("updatePassword","CompanyUserController.updatePassword");
+  Route.post("addEvent","CompanyUserController.addEvent");
+  Route.post("addSubscribe","UserController.addSubscribe");
+  Route.get("/getAllCompanies/:userName","UserController.getAllCompanies");
+  Route.get("/getAllEnrolledEvents/:uid","UserController.getAllEnrolledEvents");
+  Route.get("/getAllnotEnrolledEvents/:uid","UserController.getAllnotEnrolledEvents");
+
 }).prefix("/connectcompany/api/v1");
