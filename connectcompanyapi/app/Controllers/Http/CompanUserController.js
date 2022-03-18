@@ -16,7 +16,22 @@ class CompanyUserController {
 
     return events;
   }
+  async getCompanyDetails({ params, request, response, auth }) {
+    let eventId = params.eventId;
+    let company = await Database.table("events")
+      .innerJoin("companies", "events.belongsTo", "companies.id")
+      .where("events.id", eventId);
 
+    return company;
+  }
+  async getCompanyDetailsByUID({ params, request, response, auth }) {
+    let uid = params.uid;
+    let company = await Database.table("companies")
+      .select("*")
+      .where("companies.userId", uid);
+
+    return company;
+  }
   async addCompany({ request, response, auth }) {
     try {
       let company = request.post();

@@ -29,4 +29,27 @@ Route.group(() => {
     "/getAllEventsByUID/:uid",
     "CompanyUserController.getAllEventsByUID"
   );
+
+  Route.get(
+    "/getCompanyDetails/:eventId",
+    "CompanyUserController.getCompanyDetails"
+  );
+  Route.get(
+    "/getCompanyDetailsByUID/:uid",
+    "CompanyUserController.getCompanyDetailsByUID"
+  );
+
+  Route.post("addCompany", "CompanyUserController.addCompany");
+  Route.post("updatePassword", "CompanyUserController.updatePassword");
+  Route.post("addEvent", "CompanyUserController.addEvent");
+  Route.post("addSubscribe", "UserController.addSubscribe");
+  Route.get("/getAllCompanies/:userName", "UserController.getAllCompanies");
+  Route.get(
+    "/getAllEnrolledEvents/:uid",
+    "UserController.getAllEnrolledEvents"
+  );
+  Route.get(
+    "/getAllnotEnrolledEvents/:uid",
+    "UserController.getAllnotEnrolledEvents"
+  );
 }).prefix("/connectcompany/api/v1");

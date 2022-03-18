@@ -28,6 +28,39 @@ Vue.component("downloadExcel", JsonExcel);
 // Integrating jQuery with vue
 //window.$ = window.jQuery = jquery;
 
+// Integrating axios with vue
+Vue.prototype.$axios = axios.create({
+  //baseURL: `${process.env.API_BASE_URL}`,
+  baseURL: "https://connectcompanyapi.herokuapp.com/connectcompany/api/v1",
+  //baseURL: "http://127.0.0.1:3333/connectcompany/api/v1",
+
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+});
+Vue.prototype.moment = moment;
+
+// Integrating axios with vue
+Vue.prototype.$_ = _;
+
+// Adding data and time filter
+Vue.filter("formatDate", function (value, formatType) {
+  if (formatType == "date" && value) {
+    return moment.utc(new Date(String(value))).format("MMMM Do YYYY");
+  }
+
+  if (formatType == "time" && value) {
+    // const time = value.split(":");
+    // if (time[0] <= 12) {
+    //   return `${time[0].padStart(2, "0")}:${time[1].padStart(2, "0")} AM`;
+    // } else {
+    //   return `${(time[0] - 12).toString().padStart(2, "0")}:${time[1].padStart(2, "0")} PM`;
+    // }
+    return moment.utc(value, "HH:mm:ss").format("hh:mm a");
+  }
+});
+
 new Vue({
   router,
   store,

@@ -1,6 +1,13 @@
 "use strict";
 const Database = use("Database");
 class UserController {
+  async addSubscribe({ request, response, auth, params }) {
+    let subdetails = request.post();
+    let subid = await Database.table("subscriptions").insert(subdetails);
+
+    return response.json({ message: "succefully uploaded with id " + subid });
+  }
+
   async getAllEnrolledEvents({ params, request, response, auth }) {
     let uid = params.uid;
     let events = await Database.raw(
@@ -11,7 +18,6 @@ class UserController {
 
     return events[0];
   }
-
   async getAllnotEnrolledEvents({ request, response, auth, params }) {
     let uid = params.uid;
     let events = await Database.raw(
@@ -21,12 +27,6 @@ class UserController {
     );
 
     return events[0];
-  }
-  async addSubscribe({ request, response, auth, params }) {
-    let subdetails = request.post();
-    let subid = await Database.table("subscriptions").insert(subdetails);
-
-    return response.json({ message: "succefully uploaded with id " + subid });
   }
 }
 
