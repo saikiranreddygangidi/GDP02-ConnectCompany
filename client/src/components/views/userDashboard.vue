@@ -1,74 +1,182 @@
 <template>
-  <div class="container-fluid mt-4">
-    <h1 class="h1" style="background: white">User Dashboard</h1>
-    <b-alert :show="loading" variant="info">Loading...</b-alert>
-    <b-row>
-      <b-col>
-        <table class="table table-striped table-light">
-          <thead>
-            <tr>
-              <th>Company Id</th>
-              <th>Registered companies</th>
-              <th>No of events</th>
-              <!-- <th>Location</th> -->
-              <!-- <th>No of  events</th> -->
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="company in companies" :key="company.id">
-              <td>{{ company.id }}</td>
-              <td>{{ company.companyName }}</td>
-              <td>{{ company.noofevents }}</td>
-              <!-- <td>{{ company.companyLocation }}</td>
-              <td>{{ company.noofevents }}</td> -->
-              <td class="text-right">
-                <!-- <a href="#" @click.prevent="showPopup = !showPopup">Kow more</a> - -->
-                <!-- <a href="#" @click.prevent="deletePost(company)">Unregister</a> -->
-                <b-button @click="modalShow = !modalShow" class="me-3"
-                  >Know more</b-button
-                >
+  <div>
+    <div class="container studContainer">
+      <h2 class="text-left mt-3">
+       User Dashboard
 
-                <b-modal
-                  v-model="modalShow"
-                  :title="company.companyName"
-                  ok-only
-                  ok-primary
-                  ok-what
-                  >There are two events happening in this company.{{
-                    company.companyName
-                  }}
-                  -{{ company.companyName }}</b-modal
-                >
-                <button class="btn btn-danger" @click="deletePost(company)">
-                  Unregister
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </b-col>
-      <b-col lg="3">
-        <b-card :title="'Register a Company'">
-          <form @submit.prevent="savePost">
-            <b-form-group label="Company Name">
-              <b-form-input
-                type="text"
-                class="m-2"
-                v-model="model.companyName"
-                placeholder="Enter a company name"
-              ></b-form-input>
-            </b-form-group>
-            <div>
-              <b-btn type="submit" variant="success">Register</b-btn>
-            </div>
-          </form>
-        </b-card>
-      </b-col>
-    </b-row>
+        <div class="float-right">
+          <router-link to="/logout">
+            <b-button pill variant="danger" class="float-right">
+              Logout
+            </b-button>
+          </router-link>
+        </div>
+      </h2>
+
+      <b-card no-body class="mb-3" v-if="notEnrollEvents.length">
+        <b-card-header header-tag="header" class="p-0" role="tab">
+          <b-button
+            block
+            v-b-toggle.private-accordion
+            variant="info"
+            class="btn-lg text-left"
+            id="pvtEvent-btn"
+          >
+            All Events Not enrolled
+            <span>(Latest events)</span>
+            <font-awesome-icon
+              icon="chevron-circle-down"
+              class="mt-1 ml-1 float-right"
+              id="arrow-down0"
+            />
+            <font-awesome-icon
+              icon="chevron-circle-up"
+              class="mt-1 ml-1 float-right d-none"
+              id="arrow-up0"
+            />
+          </b-button>
+        </b-card-header>
+        <b-collapse
+          id="private-accordion"
+          visible
+          accordion="private-accd"
+          role="tabpane2"
+        >
+          <b-card-body>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Event Name</th>
+                  <th scope="col">Event Type</th>
+                  <th scope="col">Event Location</th>
+                  <th scope="col">EventDate</th>
+                  <th scope="col">Open Company</th>
+                  <th scope="col">Enroll Button</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="event in notEnrollEvents" :key="event.id">
+                  <td>{{ event.eventName }}</td>
+                  <td>{{ event.eventType }}</td>
+                  <td>{{ event.eventLocation }}</td>
+                  <td>{{ event.eventDate }}</td>
+                  <td
+                    @click="
+                      $bvModal.show('addModal');
+
+                      openCompany(event.id);
+                    "
+                  >
+                    <button type="button" class="btn btn-primary">
+                      company details
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      @click="enroll(event.id)"
+                    >
+                      Enroll
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-card no-body class="mb-3" v-if="events.length">
+        <b-card-header header-tag="header" class="p-0" role="tab">
+          <b-button
+            block
+            v-b-toggle.private-accordion
+            variant="info"
+            class="btn-lg text-left"
+            id="pvtEvent-btn"
+          >
+            All Events enrolled
+            <span>(Latest events)</span>
+            <font-awesome-icon
+              icon="chevron-circle-down"
+              class="mt-1 ml-1 float-right"
+              id="arrow-down0"
+            />
+            <font-awesome-icon
+              icon="chevron-circle-up"
+              class="mt-1 ml-1 float-right d-none"
+              id="arrow-up0"
+            />
+          </b-button>
+        </b-card-header>
+        <b-collapse
+          id="private-accordion"
+          visible
+          accordion="private-accd"
+          role="tabpane2"
+        >
+          <b-card-body>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Event Name</th>
+                  <th scope="col">Event Type</th>
+                  <th scope="col">Event Location</th>
+                  <th scope="col">EventDate</th>
+                  <th scope="col">Open Company</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="event in events" :key="event.id">
+                  <td>{{ event.eventName }}</td>
+                  <td>{{ event.eventType }}</td>
+                  <td>{{ event.eventLocation }}</td>
+                  <td>{{ event.eventDate }}</td>
+                  <td
+                    @click="
+                      $bvModal.show('addModal');
+
+                      openCompany(event.id);
+                    "
+                  >
+                    <button type="button" class="btn btn-primary">
+                      company details
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
+      <b-modal id="addModal" hide-footer centered>
+        <template #modal-title>
+          Company details
+        </template>
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <div>
+            <!-- <label for="select event">Select Event</label> -->
+            <span> <b>Company Name : </b>{{ cdetails.companyName }} </span>
+          </div>
+          <div>
+            <span> <b>Company Location :</b> {{ cdetails.companyLocation }} </span>
+          </div>
+
+          <div>
+            <b-button
+              class="mt-3 col-12"
+              block
+              @click="$bvModal.hide('addModal')"
+              >ok</b-button
+            >
+          </div>
+        </div>
+      </b-modal>
+    </div>
   </div>
 </template>
-
 <script>
 //import api from '@/api'
 export default {
