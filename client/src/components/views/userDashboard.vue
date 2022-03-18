@@ -2,7 +2,7 @@
   <div>
     <div class="container studContainer">
       <h2 class="text-left mt-3">
-       User Dashboard
+        User Dashboard
 
         <div class="float-right">
           <router-link to="/logout">
@@ -150,9 +150,7 @@
         </b-collapse>
       </b-card>
       <b-modal id="addModal" hide-footer centered>
-        <template #modal-title>
-          Company details
-        </template>
+        <template #modal-title> Company details </template>
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >
@@ -161,7 +159,9 @@
             <span> <b>Company Name : </b>{{ cdetails.companyName }} </span>
           </div>
           <div>
-            <span> <b>Company Location :</b> {{ cdetails.companyLocation }} </span>
+            <span>
+              <b>Company Location :</b> {{ cdetails.companyLocation }}
+            </span>
           </div>
 
           <div>
