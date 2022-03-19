@@ -7,11 +7,6 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
-        
-      
-        
-          
-        
       </b-collapse>
     </b-navbar>
   </div>
@@ -22,24 +17,23 @@ export default {
   data() {
     return {
       login: false,
-      role:"",
+      role: "",
     };
   },
   mounted() {
     this.login = this.$store.getters.loggedIn;
-   // this.role =this.$store.getters.userdetails.role;
+    // this.role =this.$store.getters.userdetails.role;
     //console.log(" loginned to ----", this.login,"------------------",this.role);
   },
-  methods:{
+  methods: {
     // getName(){
 
     //   return this.$store.getters.userdetails.role;
     // },
-    isloggied(){
+    isloggied() {
       return this.$store.getters.loggedIn;
-    }
-  }
-  
+    },
+  },
 };
 </script>
 
@@ -52,9 +46,9 @@ b-navbar {
   float: left;
   width: 100%;
 }
-.nav-but{
-  margin-right:10px;
-  padding:5px;
+.nav-but {
+  margin-right: 10px;
+  padding: 5px;
   text-decoration: none;
 }
 </style>
