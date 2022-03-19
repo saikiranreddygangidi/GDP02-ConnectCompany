@@ -128,6 +128,23 @@ export default {
   },
   async mounted() {},
   methods: {
+
+    async getAllEvents() {
+      console.log("entereddd");
+      await this.$axios
+        .get(`/getAllEvents`)
+        .then((response) => {
+
+          this.eventsCount = response.data.length;
+          this.events = response.data;
+
+          // this.privateEvents.filter()
+        })
+        .catch((error) => {
+          console.log("cameeeeee");
+          console.log(error);
+        });
+    },
     async refreshPosts() {
       await this.$axios.get("/getAllCompanies").then((response) => {
         this.companies = response.data;
