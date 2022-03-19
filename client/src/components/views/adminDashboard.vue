@@ -11,9 +11,8 @@
             </b-button>
           </router-link>
         </div>
-        
-        <div class="float-right" style="margin-left:80%">
-        
+
+        <div class="float-right" style="margin-left: 80%">
           <router-link to="/addCompany">
             <b-button pill variant="info" class="float-right">
               Create Company
@@ -87,9 +86,7 @@
         </b-collapse>
       </b-card>
       <b-modal id="addModal" hide-footer centered>
-        <template #modal-title>
-          Company details
-        </template>
+        <template #modal-title> Company details </template>
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >
@@ -146,19 +143,11 @@ export default {
       this.$store.getters.userDetails.id,
       this.$store.getters.userDetails.role,
       "---role froms store"
-						  
-																	
-									   
-		 
-	  
-									   
     );
-    $("#public-btn").click(function() {
+    $("#public-btn").click(function () {
       if (publicAccd) {
         $("#arrow-down0").addClass("d-none");
         $("#arrow-up0").removeClass("d-none");
-						  
-														 
       } else {
         $("#arrow-down0").removeClass("d-none");
         $("#arrow-up0").addClass("d-none");
@@ -166,20 +155,18 @@ export default {
       publicAccd = !publicAccd;
     });
 
-    $("#editEvent-btn").click(function() {
+    $("#editEvent-btn").click(function () {
       if (editEventAccd) {
         $("#arrow-down1").addClass("d-none");
         $("#arrow-up1").removeClass("d-none");
       } else {
         $("#arrow-down1").removeClass("d-none");
         $("#arrow-up1").addClass("d-none");
-									
-									  
       }
       editEventAccd = !editEventAccd;
     });
 
-    $("#pvtEvent-btn").click(function() {
+    $("#pvtEvent-btn").click(function () {
       console.log("****private button**");
       if (pvtEventAccd) {
         alert("hello");
@@ -202,7 +189,6 @@ export default {
       await this.$axios
         .get(`/getAllEvents`)
         .then((response) => {
-
           this.eventsCount = response.data.length;
           this.events = response.data;
 
