@@ -13,6 +13,7 @@ import AddEventComponent from "../components/views/addEvent.vue";
 import updatePassword from "../components/views/updatePassword.vue";
 //import Navigation from "../components/Semantic/Navigation";
 
+
 import store from "../store";
 
 import SecureComponent from "../components/views/secure.vue";
@@ -66,7 +67,7 @@ const routes = [
     name: "welcome",
     component: WelcomeComponent,
   },
-
+  
   // {
   //   path: "/",
   //   component: Navigation,
@@ -117,11 +118,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log(store.getters.loggedIn, "----------router before each");
   console.log(to.path);
-  if (
-    to.path == "/welcome" ||
-    to.path == "/register" ||
-    to.matched.some((record) => record.meta.requiresAuth)
-  ) {
+  if (to.path == "/welcome" || to.path == "/register" || to.matched.some((record) => record.meta.requiresAuth) ) {
     next();
   } else if (!store.getters.loggedIn && to.path != "/login") {
     console.log("in login");
