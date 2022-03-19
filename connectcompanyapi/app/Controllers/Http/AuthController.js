@@ -1,4 +1,8 @@
 "use strict";
+const { validate } = use("Validator");
+
+const User = use("App/Models/User");
+const crypto = require("crypto");
 
 class AuthController {
   async register({ request, response, auth }) {
@@ -79,16 +83,18 @@ class AuthController {
       initVector
     );
 
-    let decryptedData = decipher.update(userinfo.code, "base64", "utf-8");
+    // let decryptedData = decipher.update(userinfo.code, "base64", "utf-8");
 
-    decryptedData += decipher.final("utf8");
+    // decryptedData += decipher.final("utf8");
 
-    userinfo.code = decryptedData;
+    // userinfo.code = decryptedData;
     console.log("userinfo ", userinfo);
     const user = await User.query()
       .where("username", userinfo.username)
       .where("code", userinfo.code)
       .fetch();
+
+    console.log(user, "user details");
 
     if (user.rows.length > 0) {
       const user = await User.findBy({ username: userinfo.username });
