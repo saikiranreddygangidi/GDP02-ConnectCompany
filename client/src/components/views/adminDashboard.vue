@@ -11,8 +11,9 @@
             </b-button>
           </router-link>
         </div>
-
-        <div class="float-right" style="margin-left: 80%">
+        
+        <div class="float-right" style="margin-left:80%">
+        
           <router-link to="/addCompany">
             <b-button pill variant="info" class="float-right">
               Create Company
@@ -86,7 +87,9 @@
         </b-collapse>
       </b-card>
       <b-modal id="addModal" hide-footer centered>
-        <template #modal-title> Company details </template>
+        <template #modal-title>
+          Company details
+        </template>
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >
@@ -112,23 +115,88 @@
   </div>
 </template>
 <script>
-//import api from '@/api'
+// import EventItem from "../components/Events/EventItem";
+// import Loader from "../components/Utils/Loader";
+import $ from "jquery";
+
+let publicAccd = true;
+let editEventAccd = true;
+let pvtEventAccd = true;
+
 export default {
   name: "AdminDashboard",
+
   data() {
     return {
-      loading: false,
-      companies: [],
-      model: {},
+      userId: this.$store.getters.userDetails.id,
+
+      events: [],
+      editAccessEvents: [],
+      noEditAccess: [],
+      cdetails: { companyName: "", companyLocation: "" },
     };
   },
-  async created() {
-    this.refreshPosts();
-    console.log("hngsdngdfgb", this.$store.getters.loggedIn);
-  },
-  async mounted() {},
-  methods: {
 
+  async mounted() {
+    console.log(
+      JSON.parse(localStorage.getItem("user_details")),
+      "------local storage user details"
+    );
+    console.log(
+      this.$store.getters.userDetails.id,
+      this.$store.getters.userDetails.role,
+      "---role froms store"
+						  
+																	
+									   
+		 
+	  
+									   
+    );
+    $("#public-btn").click(function() {
+      if (publicAccd) {
+        $("#arrow-down0").addClass("d-none");
+        $("#arrow-up0").removeClass("d-none");
+						  
+														 
+      } else {
+        $("#arrow-down0").removeClass("d-none");
+        $("#arrow-up0").addClass("d-none");
+      }
+      publicAccd = !publicAccd;
+    });
+
+    $("#editEvent-btn").click(function() {
+      if (editEventAccd) {
+        $("#arrow-down1").addClass("d-none");
+        $("#arrow-up1").removeClass("d-none");
+      } else {
+        $("#arrow-down1").removeClass("d-none");
+        $("#arrow-up1").addClass("d-none");
+									
+									  
+      }
+      editEventAccd = !editEventAccd;
+    });
+
+    $("#pvtEvent-btn").click(function() {
+      console.log("****private button**");
+      if (pvtEventAccd) {
+        alert("hello");
+        $("#arrow-down2").addClass("d-none");
+        $("#arrow-up2").removeClass("d-none");
+      } else {
+        alert("hello");
+        $("#arrow-down2").removeClass("d-none");
+        $("#arrow-up2").addClass("d-none");
+      }
+      pvtEventAccd = !pvtEventAccd;
+      alert(pvtEventAccd);
+    });
+
+    await this.getAllEvents();
+  },
+  methods: {
     async getAllEvents() {
       console.log("entereddd");
       await this.$axios
@@ -145,7 +213,7 @@ export default {
           console.log(error);
         });
     },
-     async openCompany(id) {
+    async openCompany(id) {
       await this.$axios
         .get("/getCompanyDetails/" + id)
         .then((response) => {
@@ -161,41 +229,6 @@ export default {
           console.log("cameeeeee");
           console.log(error);
         });
-    },
-    async refreshPosts() {
-      await this.$axios.get("/getAllCompanies").then((response) => {
-        this.companies = response.data;
-      });
-    },
-    async populatePostToEdit(company) {
-      this.model = Object.assign({}, company);
-    },
-    async savePost() {
-      this.companies.push(this.model);
-      /*
-      if (this.model.id) {
-        //await api.updatePost(this.model.id, this.model)
-      } else {
-      //  await api.createPost(this.model)
-      }
-      this.model = {} // reset form
-      await this.refreshPosts()*/
-    },
-    async deletePost(company) {
-      if (confirm("Are you sure you want to delete this post?")) {
-        // if we are editing a post we deleted, remove it from the form
-        if (this.model.companies.id === company.id) {
-          this.events.remove(company);
-          // this.model = {}
-        }
-        //  await api.deletePost(id)
-        //   await this.refreshPosts()
-      }
-    },
-    logout() {
-      this.$store.dispatch("destroyToken").then(() => {
-        this.$router.push({ name: "login" });
-      });
     },
   },
 };
