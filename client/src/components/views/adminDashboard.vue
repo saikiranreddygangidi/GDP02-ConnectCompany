@@ -145,6 +145,23 @@ export default {
           console.log(error);
         });
     },
+     async openCompany(id) {
+      await this.$axios
+        .get("/getCompanyDetails/" + id)
+        .then((response) => {
+          // console.log("***  inside public events fn  *****");
+          // console.log(response.data);
+          // console.log("***  inside public events fn  *****");
+          console.log(response.data, "kdfbhkdsfjdfhbhhhh  ====");
+          this.cdetails = response.data[0];
+
+          // this.privateEvents.filter()
+        })
+        .catch((error) => {
+          console.log("cameeeeee");
+          console.log(error);
+        });
+    },
     async refreshPosts() {
       await this.$axios.get("/getAllCompanies").then((response) => {
         this.companies = response.data;
