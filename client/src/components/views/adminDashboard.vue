@@ -233,3 +233,15 @@ export default {
   },
 };
 </script>
+<style scoped>
+.txt-gray {
+  color: #333;
+}
+
+.b-radius {
+  border-radius: 20px !important;
+}
+.studContainer {
+  padding-bottom: 5%;
+}
+</style>
