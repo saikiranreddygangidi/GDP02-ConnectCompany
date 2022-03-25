@@ -39,8 +39,8 @@ We are planning to develop this project using Vue JS as a frontend framework, Ad
  
 ### Our Application is developed based upon the planned our [Project Board](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/projects/2)
 ### Weekly our work is updated in [wiki](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/wiki)
-### Our application issue link  [issue](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/issues)
-### link to milestone [milestone](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/milestones)
+### Our application issue link  [clich here](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/issues)
+### link to milestone [click here](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/milestones)
 
 
 ### Testing 
