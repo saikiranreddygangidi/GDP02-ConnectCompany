@@ -39,6 +39,23 @@ We are planning to develop this project using Vue JS as a frontend framework, Ad
  
 ### Our Application is developed based upon the planned our [Project Board](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/projects/2)
 ### Weekly our work is updated in [wiki](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/wiki)
+### Our application issue link  [issue](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/issues)
+### link to milestone [milestone](https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/milestones)
 
 
+### Testing 
+- We Tested all the major cases in the application we have generated the test report 
+- We used the Jest for testing the application
+- Here is link to testing repo **[click here](https://github.com/saikiranreddygangidi/jest-testcoverage-connectcompany)**
+- Here is link to test coverage report **[click here](https://saikiranreddygangidi.github.io/jest-testcoverage-connectcompany/)**
+
+### swagger
+- Here is link to swagger repo link : **[click here](https://github.com/saikiranreddygangidi/swagger-github-pages)**
+- Here is swagger link : **[click here](https://saikiranreddygangidi.github.io/swagger-github-pages/)**
+
+### Documentation for application 
+- We used vuese for documentation part of our application 
+- we created the documentation for every useful method
+- Here is link to documentation repo link : **[click here](https://github.com/saikiranreddygangidi/vuese-connectcompany)**
+- Here is documentation link : **[click here](https://saikiranreddygangidi.github.io/vuese-connectcompany/#/)**
 
