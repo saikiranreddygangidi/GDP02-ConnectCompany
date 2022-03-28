@@ -14,6 +14,21 @@
         class="fa-brands fa-github"
         >Proposal</b-navbar-brand
       >
+      <b-navbar-brand
+        href="https://saikiranreddygangidi.github.io/vuese-connectcompany/#/"
+        class="fa-brands fa-github"
+        >documnetation</b-navbar-brand
+      >
+      <b-navbar-brand
+        href="https://github.com/saikiranreddygangidi/GDP02-ConnectCompany/wiki"
+        class="fa-brands fa-github"
+        >wiki</b-navbar-brand
+      >
+      <b-navbar-brand
+        href="https://saikiranreddygangidi.github.io/swagger-github-pages/"
+        class="fa-brands fa-github"
+        >Swagger</b-navbar-brand
+      >
     </b-navbar>
   </div>
 </template>
