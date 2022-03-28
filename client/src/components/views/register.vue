@@ -63,6 +63,10 @@
               Register
               <font-awesome-icon icon="sign-in-alt" class="m-t-4" />
             </b-button>
+            <router-link to="/loginWithGithub">
+                <button class="button" style="padding-top:5px;padding-bottom:5px; margin-left:5px;border-radius:4px;"><font-awesome-icon :icon="['fab', 'github']" />
+Register With Github</button>
+              </router-link>
           </b-form>
         </div>
       </b-col>
@@ -70,7 +74,10 @@
     </b-row>
   </b-container>
 </template>
+
 <script>
+import CryptoJS from "crypto-js";
+
 export default {
   name: "Register",
   data() {
@@ -84,8 +91,24 @@ export default {
     };
   },
   methods: {
+    /**
+     * @vuese
+     * This method takes the user credentials and register the user
+     */
     register() {
       console.log(this.input);
+          const iv = "sinasinasisinaaa";
+      //console.log("store Intern", this.$store);
+      const cipher = CryptoJS.AES.encrypt(
+        this.input.code,
+        CryptoJS.enc.Utf8.parse("82f2ceed4c503896c8a291e560bd4325"),
+        {
+          iv: CryptoJS.enc.Utf8.parse(iv),
+          mode: CryptoJS.mode.CBC,
+        }
+      );
+
+      this.input.code = cipher.toString();
       this.$axios
         .post("/register", this.input)
         .then((response) => {
@@ -104,6 +127,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .register {
   border: 1px solid #cccccc;

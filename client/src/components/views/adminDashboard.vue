@@ -6,13 +6,13 @@
 
         <div class="float-right">
           <router-link to="/logout">
-            <b-button pill variant="danger" class="float-right">
+            <b-button pill variant="danger" id="logout" class="float-right">
               Logout
             </b-button>
           </router-link>
         </div>
 
-        <div class="float-right" style="margin-left: 80%">
+        <div class="float-right" style="margin-left:80%">
           <router-link to="/addCompany">
             <b-button pill variant="info" class="float-right">
               Create Company
@@ -86,7 +86,9 @@
         </b-collapse>
       </b-card>
       <b-modal id="addModal" hide-footer centered>
-        <template #modal-title> Company details </template>
+        <template #modal-title>
+          Company details
+        </template>
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >
@@ -144,7 +146,7 @@ export default {
       this.$store.getters.userDetails.role,
       "---role froms store"
     );
-    $("#public-btn").click(function () {
+    $("#public-btn").click(function() {
       if (publicAccd) {
         $("#arrow-down0").addClass("d-none");
         $("#arrow-up0").removeClass("d-none");
@@ -155,7 +157,7 @@ export default {
       publicAccd = !publicAccd;
     });
 
-    $("#editEvent-btn").click(function () {
+    $("#editEvent-btn").click(function() {
       if (editEventAccd) {
         $("#arrow-down1").addClass("d-none");
         $("#arrow-up1").removeClass("d-none");
@@ -166,7 +168,7 @@ export default {
       editEventAccd = !editEventAccd;
     });
 
-    $("#pvtEvent-btn").click(function () {
+    $("#pvtEvent-btn").click(function() {
       console.log("****private button**");
       if (pvtEventAccd) {
         alert("hello");
@@ -184,12 +186,16 @@ export default {
     await this.getAllEvents();
   },
   methods: {
+    /**
+     * @vuese
+     * This method gets all the events
+     */
     async getAllEvents() {
       console.log("entereddd");
       await this.$axios
         .get(`/getAllEvents`)
         .then((response) => {
-          this.eventsCount = response.data.length;
+          //this.eventsCount = response.data.length;
           this.events = response.data;
 
           // this.privateEvents.filter()
@@ -199,6 +205,10 @@ export default {
           console.log(error);
         });
     },
+    /**
+     * @vuese
+     * This method gets company details by id
+     */
     async openCompany(id) {
       await this.$axios
         .get("/getCompanyDetails/" + id)

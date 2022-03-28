@@ -1,5 +1,9 @@
 <template>
+
+
+
   <b-container fluid class="container">
+  
     <b-row>
       <div class="col-sm-12">
         <h2 class="mt-5 mb-5 text-light">Welcome to ConnectCompany</h2>
@@ -48,13 +52,19 @@
               Login
               <font-awesome-icon icon="sign-in-alt" class="m-t-4" />
             </b-button>
+            <router-link to="/loginWithGithub">
+                <button class="button" style="padding-top:5px;padding-bottom:5px; margin-left:5px;border-radius:4px;"><font-awesome-icon :icon="['fab', 'github']" />
+Login With Github</button>
+              </router-link>
           </b-form>
         </div>
       </b-col>
       <b-col></b-col>
     </b-row>
   </b-container>
+  
 </template>
+
 <script>
 import CryptoJS from "crypto-js";
 
@@ -70,8 +80,12 @@ export default {
     };
   },
   methods: {
+    /**
+     * @vuese
+     * This method takes the user credentials and authenticates the user
+     */
     login() {
-      console.log("in login *****");
+      console.log("in login ***********");
       console.log("data is ", this.input);
 
       const iv = "sinasinasisinaaa";
