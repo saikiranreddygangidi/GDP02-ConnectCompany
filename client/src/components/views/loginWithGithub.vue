@@ -32,3 +32,19 @@
     </div>
   </div>
 </template>
+<script>
+// import PritiNavbar from "../components/PritiNavbar.vue";
+export default {
+  data() {
+    return {
+      items: [],
+      address: [],
+    };
+  },
+  methods: {},
+  name: "LoginWithGithub",
+  components: {
+    // PritiNavbar,
+  },
+};
+</script>
