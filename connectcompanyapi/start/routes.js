@@ -52,4 +52,5 @@ Route.group(() => {
     "/getAllnotEnrolledEvents/:uid",
     "UserController.getAllnotEnrolledEvents"
   );
+  //comment
 }).prefix("/connectcompany/api/v1");
