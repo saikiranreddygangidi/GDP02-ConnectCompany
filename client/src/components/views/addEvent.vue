@@ -63,3 +63,63 @@
     <br />
   </div>
 </template>
+
+<script>
+//import api from '@/api'
+export default {
+  name: "addEvent",
+  data() {
+    return {
+      loading: false,
+      event: {},
+      errmsg: "",
+    };
+  },
+  async created() {},
+  async mounted() {},
+  methods: {
+    /**
+     * @vuese
+     * This method adds new event to the events list
+     */
+    async savePost() {
+      let userId = this.$store.getters.userDetails.id;
+
+      this.event.createdBy = this.$store.getters.userDetails.id;
+      let company = await this.$axios.get("/getCompanyDetailsByUID/" + userId);
+      this.event.belongsTo = company.data[0].id;
+      console.log(this.event);
+
+      this.$axios
+        .post("/addEvent", this.event)
+        .then((response) => {
+          this.errmsg = "Event data is successfully uploaded";
+          this.spin = false;
+          this.$root.$bvToast.toast(`event added successfully`, {
+            title: `Event Created `,
+            variant: "success",
+            autoHideDelay: 5000,
+          });
+
+          console.log("----", response.data);
+        })
+        .catch((error) => {
+          this.spin = false;
+          this.errmsg = "There is error in uploading the event data";
+          console.log("----", error.response.data);
+        });
+      this.event = {};
+    },
+
+    /**
+     * @vuese
+     * This method destroys the token and logs out of the application
+     */
+    logout() {
+      this.$store.dispatch("destroyToken").then(() => {
+        this.$router.push({ name: "login" });
+      });
+    },
+  },
+};
+</script>
