@@ -38,5 +38,6 @@ Route.group(() => {
   Route.get("/getAllCompanies/:userName","UserController.getAllCompanies");
   Route.get("/getAllEnrolledEvents/:uid","UserController.getAllEnrolledEvents");
   Route.get("/getAllnotEnrolledEvents/:uid","UserController.getAllnotEnrolledEvents");
+  //comment
 
 }).prefix("/connectcompany/api/v1");
