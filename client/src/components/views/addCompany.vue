@@ -10,7 +10,7 @@
               pill
               variant="danger"
               class="float-right"
-              style="margin-left: 50px"
+              style="margin-left:50px"
             >
               Logout
             </b-button>
@@ -21,7 +21,7 @@
               pill
               variant="info"
               class="float-right"
-              style="margin-left: 20px"
+              style="margin-left:20px"
             >
               dashboard
               <font-awesome-icon icon="fa-solid fa-user-secret" class="ml-1" />
@@ -71,9 +71,12 @@
             <br />
             <br />
             <div>
-              <b-btn type="submit" variant="success">Save Company</b-btn>
+              <b-btn type="submit" id="submit" variant="success"
+                >Save Company</b-btn
+              >
             </div>
           </b-form>
+          <span style="red">{{ errmsg }}</span>
         </b-card>
       </b-col>
       <b-col></b-col>
@@ -88,18 +91,25 @@ export default {
     return {
       loading: false,
       companies: {},
+      errmsg: "",
     };
   },
   async created() {},
   async mounted() {},
   methods: {
+    /**
+     * @vuese
+     * This method adds new company to the companies list
+     */
     savePost() {
+      this.errmsg = "";
       console.log(this.$store.getters.userDetails.id, "djfhgdwfhghjn");
 
       this.companies.userId = this.$store.getters.userDetails.id;
       this.$axios
         .post("/addCompany", this.companies)
         .then((response) => {
+          this.errmsg = "successfully uploaded data";
           this.spin = false;
           this.$root.$bvToast.toast(`Company added successfully`, {
             title: `Company Created `,
@@ -111,11 +121,16 @@ export default {
         })
         .catch((error) => {
           this.spin = false;
+          this.errmsg = "There is error in uploading company data";
           console.log("----", error.response.data);
         });
       this.companies = {};
     },
 
+    /**
+     * @vuese
+     * This method destroys the token and logs out of the application
+     */
     logout() {
       this.$store.dispatch("destroyToken").then(() => {
         this.$router.push({ name: "login" });
