@@ -37,7 +37,7 @@ describe("userDashboard.vue", () => {
     expect(wrapper.vm.$data.events).toBe(events);
   });
   it("testing the page is Company User Dashboard  ", () => {
-    //expect(wrapper.text()).toMatch(msg)
+  
     expect(wrapper.find("h2").exists()).toBe(true);
   });
 });
