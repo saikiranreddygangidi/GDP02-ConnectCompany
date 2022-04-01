@@ -1,20 +1,17 @@
 <template>
   <div class="container-fluid mt-4">
-    <h1 class="h1" style="background: white">
-      Company User Dashboard
-      <div class="btn-center">
-        <b-button variant="primary" @click="logout()">
-          Logout
-          <font-awesome-icon icon="sign-in-alt" class="m-t-4" />
-        </b-button>
-      </div>
-    </h1>
+    <h1 class="h1" style="background:white">Company User Dashboard <div class="btn-center">
+      <b-button variant="primary" @click="logout()">
+        Logout
+        <font-awesome-icon icon="sign-in-alt" class="m-t-4" />
+      </b-button>
+    </div></h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <br />
     <b-row>
       <b-card
-        class="d-flex justify-content-center col-sm-3"
-        style="margin-left: 40%"
+        class="d-flex justify-content-center col-sm-3 "
+        style="margin-left : 40%"
         :title="model.id ? 'Edit Event ID#' + model.id : 'Add New Event'"
       >
         <form @submit.prevent="savePost">
@@ -88,39 +85,52 @@
 <script>
 //import api from '@/api'
 export default {
-  name: "updatePassword",
+  name:"CompanyUserDashboard",
   data() {
     return {
       loading: false,
-      user: {},
-      message: "",
-      testpassword: "",
+      events: [],
+      model: {},
     };
   },
-  async created() {},
-  async mounted() {},
+  async created() {
+    this.refreshPosts();
+  },
   methods: {
-    async savePost() {
-      let userId = this.$route.params.userId;
-      this.user.userId = userId;
-      console.log(this.user);
-      console.log(this.user.password, this.testpassword);
-
-      if (this.user.password == this.testpassword) {
-        await this.$axios.post("/updatePassword", this.user);
-        this.message = "updated successfully";
-        this.$router.push({ name: "login" });
-      } else {
-        this.message = "password should match";
-      }
-
-      console.log(this.user);
+    async refreshPosts() {
+      await this.$axios.get("/getAllEvents").then((response) => {
+        this.events = response.data;
+      });
     },
-
-    logout() {
+     logout() {
       this.$store.dispatch("destroyToken").then(() => {
         this.$router.push({ name: "login" });
       });
+    },
+    async populatePostToEdit(event) {
+      this.model = Object.assign({}, event);
+    },
+    async savePost() {
+      this.events.push(this.model);
+      /*
+      if (this.model.id) {
+        //await api.updatePost(this.model.id, this.model)
+      } else {
+      //  await api.createPost(this.model)
+      }
+      this.model = {} // reset form
+      await this.refreshPosts()*/
+    },
+    async deletePost(event) {
+      if (confirm("Are you sure you want to delete this post?")) {
+        // if we are editing a post we deleted, remove it from the form
+        if (this.model.event.id === event.id) {
+          this.events.remove(event);
+          // this.model = {}
+        }
+        //  await api.deletePost(id)
+        //   await this.refreshPosts()
+      }
     },
   },
 };
